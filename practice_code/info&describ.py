@@ -1,0 +1,37 @@
+
+#from tkinter.font import names
+
+#from numpy.ma.extras import column_stack
+
+# 1.columns,rows?
+# 2.what type of?
+# 3.missing data?
+# info()
+# method
+# -number of rows and column
+# -column names
+# -int64 float64 object
+# -non null counts
+# -memory usage of the data frame
+
+import pandas as pd
+df=pd.read_csv(r"C:\Users\Ratul\Downloads\DimCustomers.csv",encoding="latin1")
+print("Displaying the info of dataset")
+#print(df.to_string())
+print(df.info())
+-- 
+#describe
+import pandas as pd
+data={
+    "name":["ratul","saion","sakib","neymar","abd"],
+    "age":[10,20,21,5,30],
+    "city":["dhaka","german","america","brazil","sa"],
+    "perfomance":[10,9,8,9,7]
+
+}
+df=pd.DataFrame(data)
+print("Sample Dataframe")
+print(df)
+print("descriptive statistics")
+print(df.describe())
+
