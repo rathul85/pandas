@@ -1,0 +1,130 @@
+import pandas as pd
+data={
+    "name":["ratul","saion","sakib","neymar","abd"],
+    "age":[10,20,21,5,30],
+    "city":["dhaka","german","america","brazil","sa"],
+    "perfomance":[10,9,8,9,7],
+    "salary":[10000,20000,15000,25000,30000]
+
+}
+df=pd.DataFrame(data)
+print("sample data frame")
+print(df.to_string(index=False))
+print("after bonus column add")
+df["bonus"]=df["salary"]*1.5
+print(df.to_string(index=False))
+#using insert
+#df.insert(loc,"column_name",some_data)
+print("add id value")
+df.insert(0,"id",[1,2,3,4,5])
+print(df.to_string(index=False))
+df["gender"]=["m","m","m","m","m"]
+print(df.to_string(index=False))
+
+
+
+"""import pandas as pd
+
+# sample data
+data = {
+    'name': ['Abir', 'Sami', 'Rina'],
+    'dept': ['Sales', 'IT', 'Sales'],
+    'exp': [6, 3, 7],
+    'salary': [20000, 22000, 21000]
+}
+df = pd.DataFrame(data)
+df.loc[(df['dept'] == 'Sales') & (df['exp'] > 5), 'salary'] = 25000 #if
+import numpy as np
+
+
+# কন্ডিশন মিললে ২৫০০০, না মিললে আগের স্যালারিই থাকবে
+df['salary'] = np.where((df['dept'] == 'Sales') & (df['exp'] > 5), 25000, df['salary'])
+#if,else
+
+
+print(df)"""
+
+
+--
+import pandas as pd
+data={
+    "name":["ratul","saion","sakib","neymar","abd"],
+    "age":[10,20,21,5,30],
+    "city":["dhaka","german","america","brazil","sa"],
+    "perfomance":[10,9,8,9,7],
+    "salary":[10000,20000,15000,25000,30000]
+
+}
+df=pd.DataFrame(data)
+print("sample data frame")
+print(df.to_string(index=False))
+
+
+
+#df.drop(columns=["columns name"],inplace=True)
+print("after column delete")
+df.drop(columns=['perfomance','age'],inplace=True)
+print(df)
+# Deletes the row at index 0
+# df.drop(index=0, inplace=True)
+# print(df)
+
+# Deletes multiple rows (0 and 2) at once
+df.drop(index=[0, 2], inplace=True)
+print(df)
+
+# # Step 1: Find the index of rows where city is 'brazil'
+# rows_to_drop = df[df["city"] == "brazil"].index
+#
+# # Step 2: Drop those specific indices
+# df.drop(index=rows_to_drop, inplace=True)
+# rows_to_drop = df[(df["city"] == "brazil") & (df["age"] < 18)].index
+#keep rows
+# df = df[(df["city"] == "german") & (df["salary"] == 20000)]
+# print(df)
+
+--
+#loc[]
+#df.loc[row_idx,"column_name",]=new value
+import pandas as pd
+data={
+    "name":["ratul","saion","sakib","neymar","abd"],
+    "age":[10,20,21,5,30],
+    "city":["dhaka","german","america","brazil","sa"],
+    "perfomance":[10,9,8,9,7],
+    "salary":[10000,20000,15000,25000,30000]
+
+}
+df=pd.DataFrame(data)
+print("sample data frame")
+print(df.to_string(index=False))
+print("*******")
+df.loc[0,"age"]=15
+print("after updating")
+print(df.to_string(index=False))
+print("*******")
+df.loc[0,["salary","city"]]=[25000,"frankfurt"]
+print("after updating 2 elements")
+print(df)
+print("*******")
+df["salary"]=df["salary"]*5
+print("after salary update")
+print(df)
+print("*******")
+df.loc[df["name"] == "sakib", "salary"] = df["salary"] * 5
+
+# df.loc[...]: This tells Pandas, "I am looking for a specific location (row and column) in the data."
+# df["name"] == "sakib": This is your Boolean Condition. It acts as a filter to select only the row(s) where the name is "sakib".
+# "salary": This is the specific Column Name that you want to update for the selected row.
+# = value: This is where you assign the new value or perform a specific calculation for that location.
+print("after updating specific person's salary")
+print(df.loc[df["name"] == "sakib", "salary"])
+print("*******")
+#who's age is greater than 20 and lives i dhaka,his salary will increase 2*
+# Multiple conditions wrap kora mandatory
+df.loc[(df["age"] > 15) & (df["city"] == "german"), "salary"] *= 2
+print("who's age is greater than 15 and lives i german,his salary will increase 2*")
+print(df.loc[df["city"]=='german','salary'])
+# df.loc[condition, "salary"]
+# df.loc[condition, "salary"] = df["salary"] * 5
+# df.loc[condition, "salary"] *= 5
